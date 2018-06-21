@@ -1,4 +1,7 @@
-/* 1  -a) Fila Estática (append e rear) Falta rear */
+/* Para teste nao Rodar Tudo Jundo pois vai dar Merda */
+
+
+/* 1  -a) Fila Estática (append e rear)  */
 
 #include <iostream>
 #include<stdlib.h>
