@@ -2,7 +2,7 @@
 
 
 /* 1  -a) Fila Estática (append e rear)  */
-
+/*
 #include <iostream>
 #include<stdlib.h>
 
@@ -34,11 +34,11 @@ int  main (){
    list = 3;
    append(list);
    
-   cout << Rear() << endl;
+   //cout << Rear() << endl;
    cout << front() << endl;
 }
 
-
+*/
 /* 1- b) Pilha Estática (push e pop) */
 
 /*#include <iostream>
@@ -71,6 +71,65 @@ int main () {
 */
 
 
+
+/*
+2) Implemente uma função que retorne o primeiro e outra função que retorne o último elemento de uma Fila Dinâmica, sem remover os mesmos da estrutura
+
+
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+
+struct cel {
+     int info;
+     struct cel *prox, *ant;
+};
+ 
+typedef struct cel Fila;
+
+Fila* inicio;
+Fila* ultimo;
+
+void criaLista(){
+    inicio = NULL;
+    ultimo = NULL;
+}
+
+Fila* inserir (int i){
+    Fila* novo = (Fila*) malloc(sizeof(Fila));
+    novo->info = i;
+    novo->ant = ultimo;
+    novo->prox = NULL;
+    if (inicio == NULL) {
+        inicio = novo;
+    }
+    ultimo = novo;
+    return ultimo;
+}
+
+Fila* pegaInicio(){ 
+    return inicio;
+}
+
+Fila* pegaUltimo(){ 
+    return ultimo;
+}
+
+int main()
+{
+    criaLista();
+    inserir(50);
+    inserir(78);
+
+    printf("%d\n", pegaInicio()->info);
+    printf("%d", pegaUltimo()->info);
+}
+
+
+
+
+*/
+
 /*  
 
 3) Dentre todos os algoritmos de ordenação estudados, defina qual é o mais rápido e qual
@@ -89,4 +148,86 @@ do que o ususario esta ultilizando a ordenaçao)
 
 
 
+/*4) Implemente uma função BubleSort para uma lista dinâmica.*/
+
+
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct cel {
+	int info;
+	struct cel *prox;
+};
+
+typedef struct cel Lista;
+
+Lista* CriaLista (void){
+	return NULL;
+}
+
+Lista* Insert (Lista* L, int i){
+	Lista* novo = (Lista*) malloc(sizeof(Lista));
+	novo->info = i;
+	novo->prox = L;
+	return novo; 
+};
+
+void imprimeLista (Lista* L){
+	Lista* p;
+	for(p=L; p!=NULL; p= p->prox){
+	printf("Numero =  %d\n", p->info);
+	}
+	printf("\n");
+};
+
+void Ordena (Lista* L){
+	Lista* p;
+	Lista* x;
+	Lista* j;
+	for(j=L; j!= NULL; j =j->prox){ 
+		for(p=L; p!= NULL; p =p->prox){
+			if(p->prox != NULL)
+				if(p->info > p->prox->info){
+					x->info = p->info;
+					p->info = p->prox->info;
+					p->prox->info = x->info;
+				}
+		
+		}
+	}
+};
+
+int main(){
+	
+	Lista* Lista = CriaLista();
+	Lista = Insert(Lista, 3);
+	Lista = Insert(Lista, 4);
+	Lista = Insert(Lista, 5);
+	Lista = Insert(Lista, 6);
+	imprimeLista(Lista);
+	Ordena(Lista);
+	imprimeLista(Lista);
+	
+	return 0;	
+}
+
+*/
+
+
+/*
+
+5) Dado o seguinte trecho de código, identi?que um possível erro:?
+
+
+
+O erro se encontra na função FilaCheia(), onde é feita a seguinte verificação "if(Max == DefMax+1) return true;".
+Sendo que DefMax define o tamanho total de posições dentro da fila e Max a quantidade de posições já preenchidas e é iniciado com zero,
+a verificação está incorreta, por exemplo, Max inicia no zero e DefMax possui 5 alocações, a função FilaCheia() só irá retornar verdadeiro 
+quando MAX estiver na sexta posição. A validação correta que deveria ser feita neste caso é  "if(Max == DefMax-1) return true;". 
+Feita esta alteração a função irá retornar verdadeiro quando MAX estiver na quinta alocação(pois o mesmo é inicializado com zero). 
+
+
+*/
 
