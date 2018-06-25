@@ -77,58 +77,96 @@ int main () {
 
 
 #include <iostream>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct cel {
-     int info;
-     struct cel *prox, *ant;
+using namespace std;
+
+const int DefMax = 20;
+int Max = 0;
+
+typedef struct cel {
+	int info;
+	struct cel *prox;
+} Lista;
+
+Lista* CriaLista() {
+	return NULL;
 };
- 
-typedef struct cel Fila;
 
-Fila* inicio;
-Fila* ultimo;
-
-void criaLista(){
-    inicio = NULL;
-    ultimo = NULL;
+void TrataMsg(std::string msg){
+	std::cout << msg << std::endl;
 }
 
-Fila* inserir (int i){
-    Fila* novo = (Fila*) malloc(sizeof(Fila));
-    novo->info = i;
-    novo->ant = ultimo;
-    novo->prox = NULL;
-    if (inicio == NULL) {
-        inicio = novo;
-    }
-    ultimo = novo;
-    return ultimo;
+bool ListaCheia () {
+	if (Max == DefMax) {
+		return true;
+	}
+	else return false;
+}
+bool ListaVazia () {
+	if (Max == 0) {
+		return true;
+	}
+	else return false;
+}
+	
+Lista* InsereInicioLista (Lista* L, int elemento) {
+	if (ListaCheia()){
+		TrataMsg("A lista está cheia! Não será possível inserir o elemento");
+	}
+	else {
+		Lista* novo = (Lista*) malloc(sizeof(Lista));
+		novo->info = elemento;
+		novo->prox = L;
+		L = novo;
+		Max++;
+	}
+	return L;
 }
 
-Fila* pegaInicio(){ 
-    return inicio;
+void FilaUltimo(Lista* p){
+	if(p != NULL)
+		printf("O primeiro elemento da Fila e: %d.\n", p->info);
+	else
+		printf("Fila Vazia!\n");
 }
 
-Fila* pegaUltimo(){ 
-    return ultimo;
+void FilaPrimeiro(Lista* F){
+	Lista* p;
+	if(p != NULL)
+		for(p=F; p!=NULL; p= p->prox){
+			if(p->prox == NULL)
+				printf("O Ultimo elemento da Fila e: %d.\n", p->info);
+	}else
+		printf("Fila Vazia!\n");
+
+};
+
+void ShowLista (Lista* L){
+	Lista* p;
+	for(p=L; p!=NULL; p= p->prox){
+	printf("Elemento :  %d\n", p->info);
+	}
+	printf("\n");
+};
+
+int main(int argc, const char * argv[]) {
+	Max = 0;
+	Lista* L = CriaLista();
+	FilaPrimeiro(L);
+	L = InsereInicioLista(L,4);
+	L = InsereInicioLista(L,3);
+	L = InsereInicioLista(L,2);
+	FilaPrimeiro(L);
+	FilaUltimo(L);
+	ShowLista(L);
+	return 0;
 }
-
-int main()
-{
-    criaLista();
-    inserir(50);
-    inserir(78);
-
-    printf("%d\n", pegaInicio()->info);
-    printf("%d", pegaUltimo()->info);
-}
-
-
-
 
 */
+
 
 /*  
 
